@@ -3,18 +3,39 @@ import axios from 'axios'
 
 interface AxiosProps {
     body: string | null;
-    headers: any;
-    method: string;
+    headers: any | null;
+    method: any;
     url: string;
 }
+interface FFImage {
+  collectionId: string;
+  id: string;
+  primary: number;
+  url: string;
+}
+interface FFData {
+  description: string;
+  gender: string;
+  height: string;
+  id: string;
+  japaneseName: string | null;
+  job: string;
+  name: string;
+  origin: string;
+  pictures: Array<
+    FFImage
+  >;
+  stats: Array<[]>;
+  weight: string;
+}
 
+const ffArr: FFData[] = []
 axios.defaults.baseURL = 'https://www.moogleapi.com/api/v1'
-const useAxios = (axiosParams: AxiosProps) => {
+const useAxios = (axiosParams : AxiosProps) => {
   //handle the response, potential errors, and loading with state
-    const [ response, setResponse ] = useState<string|null>(null)
+    const [ response, setResponse ] = useState<typeof ffArr|null>(null)
     const [ error, setError ] = useState<unknown>(null)
     const [loading, setLoading ] = useState<boolean>(true)
-
     const fetchData = async (params : AxiosProps): Promise<any>=> {
       //remember try and catch blocks. also remember async and await
       try {
@@ -39,10 +60,9 @@ const useAxios = (axiosParams: AxiosProps) => {
 
     useEffect(()=> {
       fetchData(axiosParams)
-    })
-  return (
-    <div>UseAxious</div>
-  )
+    },[])
+
+  return {response, error, loading}
 }
 
 export default useAxios
