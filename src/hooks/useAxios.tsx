@@ -36,6 +36,8 @@ const useAxios = (axiosParams : AxiosProps) => {
     const [ response, setResponse ] = useState<typeof ffArr|null>(null)
     const [ error, setError ] = useState<unknown>(null)
     const [loading, setLoading ] = useState<boolean>(true)
+    const controller = new AbortController()
+    const { signal } = controller
     const fetchData = async (params : AxiosProps): Promise<any>=> {
       //remember try and catch blocks. also remember async and await
       try {
@@ -59,8 +61,13 @@ const useAxios = (axiosParams : AxiosProps) => {
     }
 
     useEffect(()=> {
-      fetchData(axiosParams)
-    },[])
+      if (axiosParams.url) {
+        fetchData(axiosParams)
+      }
+      return ()=> {
+        console.log('aborting!')
+        controller.abort()}
+    },[axiosParams.url])
 
   return {response, error, loading}
 }
