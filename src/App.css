@@ -39,3 +39,12 @@
 .read-the-docs {
   color: #888;
 }
+
+.App#light {
+  background-color: rgb(9, 208, 155);
+  display: flex;
+}
+
+.App#dark {
+  background-color:rgb(13, 2, 53)
+}

@@ -22,7 +22,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalContext.Provider value={{theme, toggleTheme}}>
-        <div className="App">
+        <div className="App" id={theme}>
           <Navbar/>
         </div>
       </GlobalContext.Provider>
