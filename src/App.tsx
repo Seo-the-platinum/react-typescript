@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import Home from './views/home/Home'
 import Navbar from './components/navbar/Navbar';
 import './App.css'
 
@@ -24,6 +25,7 @@ function App() {
       <GlobalContext.Provider value={{theme, toggleTheme}}>
         <div className="App" id={theme}>
           <Navbar/>
+          <Home/>
         </div>
       </GlobalContext.Provider>
     </QueryClientProvider>

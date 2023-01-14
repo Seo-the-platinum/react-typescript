@@ -40,9 +40,13 @@
   color: #888;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
 .App#light {
   background-color: rgb(9, 208, 155);
-  display: flex;
 }
 
 .App#dark {
