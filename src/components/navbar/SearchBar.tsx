@@ -42,13 +42,6 @@ const SearchBar = () => {
   return (
     <div className='searchBarContainer'>
         <input type='search' onChange={handleQuery}/>
-        {
-          query && query.length > 0 &&
-          <>
-            <h3>{!data?.data?.message && data?.data[0].name}</h3>
-            <img src={data?.data[0]?.pictures[0].url}/>
-          </>
-        }
     </div>
   )
 }
